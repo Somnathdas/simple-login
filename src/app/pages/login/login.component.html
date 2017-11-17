@@ -1,0 +1,39 @@
+
+  <div class="imgcontainer">
+    <img src="assets/img_avatar2.png" alt="Avatar" class="avatar">
+  </div>
+
+  <div class="container">
+    <h1 class="text-center">Login </h1>
+	<div class="alert alert-danger fade in" [hidden]="!loginError">
+    <a href="#" class="close" data-dismiss="alert">&times;</a>
+    <strong>Error!</strong> {{loginErrormsg}}
+</div>
+
+    <form (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+    
+    
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+            <label for="username">Username</label>
+            <input type="text"  name="username" [(ngModel)]="model.username" #username="ngModel" required />
+            <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+            <label for="password">Password</label>
+            <input type="password" name="password" [(ngModel)]="model.password" #password="ngModel" required />
+            <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+        </div>
+        <span class="text-center loader-center" *ngIf="loading">
+    Please Wait...
+    </span>
+    <br>
+
+            <button [disabled]="loading" class="btn btn-primary">Login</button>
+            
+    </form>
+  </div>
+
+  <div class="container">
+    <a routerLink="/sign-up" class="signup">Signup</a>
+    <a routerLink="/forgot-password" class="psw">Forgot password?</a>
+  </div>
